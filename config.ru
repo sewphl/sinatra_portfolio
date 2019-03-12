@@ -6,3 +6,7 @@ end
 
 use Rack::MethodOverride
 run ApplicationController
+use CustomersController
+use HerbsController
+use OrdersController
+use TincturesController

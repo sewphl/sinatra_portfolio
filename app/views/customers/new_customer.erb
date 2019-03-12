@@ -1,0 +1,16 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= (flash[:message].respond_to?(:html_safe) && flash[:message].html_safe) || flash[:message]%>
+  <% end %>
+<h2>Create an account</h2>
+
+<form method="POST" action="/signup">
+  <p>Username: <input type="text" name="username" id="username"></p>
+  <p>First name: <input type="text" name="first_name" id="first_name"></p>
+  <p>Last name: <input type="text" name="last_name" id="last_name"></p>
+  <p>Address: <input type="text" name="address" id="address"></p>
+  <p>Email: <input type="text" name="email" id="email"></p>
+  <p>Password: <input type="password" name="password" id="password"></p>
+  <input type="submit" value="Create account">
+</form>
+</div>

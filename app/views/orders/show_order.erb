@@ -1,0 +1,25 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= (flash[:message].respond_to?(:html_safe) && flash[:message].html_safe) || flash[:message]%>
+  <% end %>
+<h3>This cart belongs to <%=@customer.username%></h3>
+<h4>Your cart currently holds the following items:</h4>
+</div>
+<div>
+  <%@tinctures.each do |t|%>
+    <%myslug = t.slug%>
+    <%@t_id = t.id%>
+    <h4><a href="/tinctures/<%=myslug%>"><%=t.name%></a><br></h4>
+    1 oz bottle, $12.99 <br>
+    Quantity: <%=@ots_t.count { |x| x == t.id }%> bottle(s)
+  <%end%>
+<h4>Total: $<%=@ots_t.length*12.99%></h4>
+<br>
+<h4>If this is correct, <a href="/checkout">continue to checkout</a></h4>
+<h4>To make changes to your cart, <a href="/orders/<%=@order.id%>/edit">update your order here</a></h4>
+
+<form action="/orders/<%=@order.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete my order">
+</form>
+</div>

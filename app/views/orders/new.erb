@@ -1,0 +1,41 @@
+<div>
+<%if logged_in?%>
+  <h2>Welcome, <%=@customer.username%></h2>
+<%else%>
+    <h2>Welcome</h2>
+    <h4>Note: You must be <a href="/login">logged in</a> to place an order</h4>
+<%end%>
+<h3>Choose from our organic herbal blends</h3>
+<h4>All tincture formulas are adapted from <a class="mytitle"
+  href="https://www.amazon.com/Herbal-Medicine-Heart-Sharol-Tilgner/dp/1881517039">
+  Herbal Medicine from the Heart of the Earth</a> by Sharol Tilgner
+</h4>
+<h4>All herbs are organic and extracted using organic grain alcohol</h4>
+</div>
+<br>
+<div>
+  <h4>Click on tincture name for description</h4>
+    <form method="POST" action="/orders">
+      <%@tinctures.each do |t|%>
+        <%myslug = t.slug%>
+        <%@t_id = t.id%>
+        <h4><a href="/tinctures/<%=myslug%>"><%=t.name%></a><br></h4>
+        1 oz bottle, $12.99<br>
+        <% if t.inventory > 1%>
+          <label for="<%=t.id%>">Quantity:</label>
+          <select class="form-control" value="<%=t.id%>" id="<%=t.id%>" name="order[tincture_counts][]">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+          </select>
+          <%else%>
+            <label class="out_of_stock" for="<%=t.id%>">Sorry, this item is currently out of stock.</label>
+            <select class="form-control" value="<%=t.id%>" id="<%=t.id%>" name="order[tincture_counts][]">
+              <option>0</option>
+            </select>
+          <%end%>
+          <br>
+        <%end%>
+        <input type="submit" name="submit" value="Update cart">
+    </form>
+</div>

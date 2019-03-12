@@ -1,0 +1,12 @@
+<div>
+<h3>Update my profile</h3>
+
+<form action="/customers/<%=@customer.username%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <p>First name: <input type="text" name="first_name" id="first_name" value="<%=@customer.first_name%>"></p>
+  <p>Last name: <input type="text" name="last_name" id="last_name" value="<%=@customer.last_name%>"></p>
+  <p>Address: <input type="text" name="address" id="address" value="<%=@customer.address%>"></p>
+  <p>Email: <input type="text" name="email" id="email" value="<%=@customer.email%>"></p>
+  <input type="submit" value="Update profile">
+</form>
+</div>

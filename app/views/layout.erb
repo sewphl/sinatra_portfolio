@@ -1,15 +1,59 @@
 <!doctype html>
 <html>
   <head>
-    <title>Fwitter</title>
+    <title>Tinctures</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
+
   <body>
-
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+      <div class="main">
+      <div class="jumbotron">
 
+        <div class="button-div"> <!--make a shopping cart -->
+        <%if session.key?(:order_id) == true && session[:order_id] != nil%>
+          <!--Pen by Cathy Cullen-->
+          <!--https://codepen.io/chcculle/pen/qPrWBK-->
+          <a class="btn" href="/orders/<%=session[:order_id]%>">
+            <span class="fa-stack fa-2x has-badge" data-count=<%=OrdersTinctures.where(order_id: Order.find(session[:order_id]).id).length%>>
+              <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+              <i style="" class="fa fa-shopping-cart fa-stack-2x cart"></i>
+            </span>
+          </a>
+        <%else%>
+          <a class="btn" href="/login">
+            <span class="fa-stack fa-2x has-badge" data-count="0">
+              <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+              <i style="" class="fa fa-shopping-cart fa-stack-2x cart"></i>
+            </span>
+          </a>
+        <%end%>
+        </div> <!--end .button-div (shopping cart)-->
+
+      <h1><a href="/">Tinctures</a></h1>
+      <h4 class="quote">Organic herbal blends</h4>
+      <br>
+
+      </div> <!--end .jumbotron-->
+
+      <%=yield%>
+
+      </div> <!--end .main  -->
+    </div> <!--end .container-->
+
+    <footer class="footer">
+    <%if logged_in?%>
+      <a href="/customers/<%=Customer.find(session[:user_id]).username%>">My profile</a><br>
+      <a href="/logout">Log out</a>
+    <%else%>
+      <a href="/login">Log in </a> or <a href="/signup">sign up</a>
+    <%end%>
+    <br>
+    <a href="/">Home</a>
+    </footer>
   </body>
 </html>

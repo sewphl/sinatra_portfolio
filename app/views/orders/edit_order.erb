@@ -1,0 +1,33 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= (flash[:message].respond_to?(:html_safe) && flash[:message].html_safe) || flash[:message]%>
+  <% end %>
+<h3>This cart belongs to <%=@customer.username%></h3>
+</div>
+<div>
+<form method="POST" action="/orders/<%=@order.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <h4>Click on tincture name for description</h4>
+  <%@tinctures.each do |t|%>
+    <%myslug = t.slug%>
+    <%@t_id = t.id%>
+    <h4><a href="/tinctures/<%=myslug%>"><%=t.name%></a><br></h4>
+    1 oz bottle, $12.99
+      <% if t.inventory > 1%>
+        <label for="<%=t.id%>">Quantity:</label>
+        <select class="form-control" value="<%=t.id%>" id="<%=t.id%>" name="order[tincture_counts][]">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+        </select>
+      <%else%>
+        <label class="out_of_stock" for="<%=t.id%>">Sorry, this item is currently out of stock.</label>
+          <select class="form-control" value="<%=t.id%>" id="<%=t.id%>" name="order[tincture_counts][]">
+            <option>0</option>
+          </select>
+      <%end%>
+      <br>
+      <%end%>
+  <input type="submit" name="submit" value="Update cart">
+</form>
+</div>

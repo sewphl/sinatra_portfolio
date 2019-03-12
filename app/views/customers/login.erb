@@ -1,0 +1,14 @@
+<div>
+  <% if flash.has?(:message) %>
+    <%= (flash[:message].respond_to?(:html_safe) && flash[:message].html_safe) || flash[:message]%>
+  <% end %>
+<h2>Log in</h2>
+
+<form method="POST" action="/login">
+  <p>Username: <input type="text" name="username"></p>
+  <p>Password: <input type="password" name="password"></p>
+  <input type="submit" value="Log in">
+</form>
+<br>
+<p>Don't have an account with us? <a href="/signup">Sign up here</a></p>
+</div>

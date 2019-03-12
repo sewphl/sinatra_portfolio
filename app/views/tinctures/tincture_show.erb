@@ -1,0 +1,12 @@
+<div>
+<h3><%=@tincture.name%></h3>
+<h4> This tincture works to support: <%=@tincture.supports%></h4>
+<h4>Herbs: </h4>
+<ul>
+<%@tincture.herbs.each do |th|%>
+  <li><%=th.name%> (<span class="latin_name"><%=th.latin_name%>)</span><br>
+  Plant part(s): <%=th.plant_part%><br>
+  </li>
+<%end%>
+</ul>
+</div>

@@ -1,0 +1,105 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+/*https://stackoverflow.com/questions/18739937/how-to-keep-footer-at-bottom-of-screen*/
+/* Opera Fix thanks to Maleika (Kohoutec) */
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+  /* thank you Erik J - negate effect of float*/
+}
+
+.container {
+    min-height: 100%;
+    background-color: #F5F5F5;
+}
+
+.main {
+  overflow: auto;
+  padding-bottom: 60px;
+}
+
+.footer {
+  position: relative;
+  margin-top: -60px;
+  height: 60px;
+  clear: both;
+  text-align: center;
+}
+
+.jumbotron {
+  background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+  background: rgba(204, 204, 204, 0.5);
+  /*Photo by Jazmin Quaynor on Unsplash*/
+  background-image: url("https://images.unsplash.com/photo-1466781783364-36c955e42a7f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80");
+  background-size: cover;
+}
+
+section {
+  position: relative;
+  width: 50%;
+  border: 1px solid;
+}
+
+h1 {
+  float: left;
+}
+
+h1 a {
+  color: #333333;
+}
+
+.quote {
+  clear: both;
+}
+
+.button-div {
+  float: right;
+  clear: both;
+}
+
+.mytitle {
+  font-style: oblique;
+}
+
+.latin_name {
+  font-style: oblique;
+}
+
+.out_of_stock {
+  color: red;
+}
+
+.fa-stack[data-count]:after{
+  position:absolute;
+  right:0%;
+  top:0%;
+  content: attr(data-count);
+  font-size:40%;
+  padding:.6em;
+  border-radius:999px;
+  line-height:.75em;
+  color: #333333;
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+  background: #E8E8EA;
+  border-style:solid;
+}
+
+.fa-circle {
+  color: #333333;
+}
+
+.cart {
+	color: #333333; background: #E8E8EA;
+}
